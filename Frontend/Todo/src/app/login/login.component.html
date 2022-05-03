@@ -1,0 +1,14 @@
+<br />
+<div>
+  User Name : <input type="text" name="userame" [(ngModel)]="userName" />
+  <br />
+  <br />
+  Password :
+  <input type="password" password="password" [(ngModel)]="password" />
+  <br />
+  <br />
+  <button (click)="handleLogin()">Login</button>
+</div>
+<br />
+<br />
+<div *ngIf="invalidLogin">{{ loginError }}</div>
