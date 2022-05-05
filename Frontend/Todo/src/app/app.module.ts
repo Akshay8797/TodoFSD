@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { YesNoPipe } from './yes-no.pipe';
+import { MenuComponent } from './menu/menu.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { YesNoPipe } from './yes-no.pipe';
     HomeComponent,
     ErrorComponent,
     ListTodosComponent,
-    YesNoPipe
+    YesNoPipe,
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
