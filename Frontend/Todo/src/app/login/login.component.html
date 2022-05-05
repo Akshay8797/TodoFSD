@@ -1,14 +1,33 @@
-<br />
-<div>
-  User Name : <input type="text" name="userame" [(ngModel)]="userName" />
+<div class="container">
+  <br />
+  <form>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="loginName">UserName :&nbsp;</label>
+      <input
+        type="text"
+        class="form-group form-group-sm"
+        name="userame"
+        [(ngModel)]="userName"
+      />
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="loginPassword"
+        >Password :&nbsp;&nbsp;&nbsp;</label
+      >
+      <input
+        type="password"
+        class="form-group form-group-sm"
+        name="password"
+        [(ngModel)]="password"
+      />
+    </div>
+    <div class="form-outline mb-4">
+      <button class="btn btn-primary mb-4" (click)="handleLogin()">
+        Login
+      </button>
+    </div>
+  </form>
   <br />
   <br />
-  Password :
-  <input type="password" password="password" [(ngModel)]="password" />
-  <br />
-  <br />
-  <button (click)="handleLogin()">Login</button>
+  <div class="alert alert-warning" *ngIf="invalidLogin">{{ loginError }}</div>
 </div>
-<br />
-<br />
-<div *ngIf="invalidLogin">{{ loginError }}</div>
