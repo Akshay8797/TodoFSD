@@ -5,13 +5,26 @@ import { HomeComponent } from './home/home.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RouteGuardService } from './service/route-guard.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home/:name', component: HomeComponent },
-  { path: 'todos', component: ListTodosComponent },
-  { path: 'logout', component: LogoutComponent },
+  {
+    path: 'home/:name',
+    component: HomeComponent,
+    canActivate: [RouteGuardService],
+  },
+  {
+    path: 'todos',
+    component: ListTodosComponent,
+    canActivate: [RouteGuardService],
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    canActivate: [RouteGuardService],
+  },
   { path: '**', component: ErrorComponent },
 ];
 
