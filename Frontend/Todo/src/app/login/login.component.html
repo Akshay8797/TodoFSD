@@ -2,32 +2,32 @@
   <br />
   <form>
     <div class="form-outline mb-4">
-      <label class="form-label" for="loginName">UserName :&nbsp;</label>
+      <label class="form-label lead" for="loginName">UserName :&nbsp;</label>
       <input
         type="text"
-        class="form-group form-group-sm"
+        class="form-group form-group-sm lead"
         name="userame"
         [(ngModel)]="userName"
       />
     </div>
     <div class="form-outline mb-4">
-      <label class="form-label" for="loginPassword"
-        >Password :&nbsp;&nbsp;&nbsp;</label
+      <label class="form-label lead" for="loginPassword"
+        >Password : &nbsp;&nbsp;</label
       >
       <input
         type="password"
-        class="form-group form-group-sm"
+        class="form-group form-group-sm lead"
         name="password"
         [(ngModel)]="password"
       />
     </div>
     <div class="form-outline mb-4">
-      <button class="btn btn-primary mb-4" (click)="handleLogin()">
+      <button class="btn btn-primary mb-4 lead" (click)="handleLogin()">
         Login
       </button>
     </div>
   </form>
   <br />
   <br />
-  <div class="alert alert-warning" *ngIf="invalidLogin">{{ loginError }}</div>
+  <div class="alert alert-warning lead" *ngIf="invalidLogin">{{ loginError }}</div>
 </div>
