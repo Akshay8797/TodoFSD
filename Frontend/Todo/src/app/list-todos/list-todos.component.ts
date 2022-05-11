@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TodoDataService } from '../service/data/todo-data.service';
 
 export class Todo {
   constructor(
     public id: number,
     public description: string,
-    public isDone: boolean,
-    public targetDate: Date
+    public targetDate: Date,
+    public isDone: boolean
   ) {}
 }
 
@@ -15,12 +17,34 @@ export class Todo {
   styleUrls: ['./list-todos.component.css'],
 })
 export class ListTodosComponent implements OnInit {
-  todos = [
-    new Todo(1, 'Learn Angular', false, new Date()),
-    new Todo(2, 'Learn Spring Boot', false, new Date()),
-    new Todo(3, 'Learn ADF', false, new Date()),
-  ];
-  constructor() {}
+  todos: Todo[] = [];
+  constructor(private router: Router, private todoService: TodoDataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllTodos();
+  }
+
+  getAllTodos(): void {
+    this.todoService.retrieveAllTodos('Akshay8797').subscribe({
+      next: (response) => (this.todos = response),
+      error: (error) => this.router.navigate(['error']),
+    });
+  }
+
+  deleteSuccess: string = '';
+  deleteFailed: string = '';
+  deleteTodo(id: number): void {
+    this.todoService.deleteTodo('Akshay8797', id).subscribe({
+      next: (response) => (
+        (this.deleteSuccess = `Todo ${id} deleted successfully!`),
+        this.getAllTodos()
+      ),
+      error: (error) =>
+        (this.deleteFailed = `Unable to delete Todo ${id}, Please try later!`),
+    });
+  }
+
+  updateTodo(id: number): void {
+    this.router.navigate(['todo', id])
+  }
 }

@@ -1,8 +1,15 @@
 <div class="container">
   <p class="lead">{{ message }} {{ name }}</p>
-  <br />
   <p class="lead">
     You can manage your Todos
     <a routerLink="/todos" class="text-primary">here</a>
   </p>
+</div>
+<div class="container">
+  <button class="btn btn-primary mb-4 lead" (click)="getWelcomeMsgWithParam()">
+    Get Welcome Msg
+  </button>
+</div>
+<div class="container" *ngIf="serviceMessage">
+  <p class="lead">Welcome mesaage is {{ serviceMessage }}</p>
 </div>

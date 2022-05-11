@@ -22,12 +22,14 @@
       />
     </div>
     <div class="form-outline mb-4">
-      <button class="btn btn-primary mb-4 lead" (click)="handleLogin()">
+      <button class="btn btn-primary mb-3 lead" (click)="handleLogin()">
         Login
       </button>
     </div>
   </form>
   <br />
   <br />
-  <div class="alert alert-warning lead" *ngIf="invalidLogin">{{ loginError }}</div>
+  <div class="alert alert-warning lead" *ngIf="invalidLogin">
+    {{ loginError }}
+  </div>
 </div>
