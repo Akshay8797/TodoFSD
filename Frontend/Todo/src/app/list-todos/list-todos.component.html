@@ -1,7 +1,11 @@
 <div class="container">
   <h3>My Todos</h3>
-  <div class="alert alert-success lead" *ngIf="deleteSuccess">{{ deleteSuccess }}</div>
-  <div class="alert alert-warning lead" *ngIf="deleteFailed">{{ deleteFailed }}</div>
+  <div class="alert alert-success lead" *ngIf="deleteSuccess">
+    {{ deleteSuccess }}
+  </div>
+  <div class="alert alert-warning lead" *ngIf="deleteFailed">
+    {{ deleteFailed }}
+  </div>
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
@@ -17,9 +21,28 @@
         <td>{{ todo.description }}</td>
         <td>{{ todo.targetDate | date }}</td>
         <td>{{ todo.isDone | yesNo }}</td>
-        <td><button class="btn btn-warning mb-3 lead" (click)="updateTodo(todo.id)">Update</button></td>
-        <td><button class="btn btn-danger mb-3 lead" (click)="deleteTodo(todo.id)">Delete</button></td>
+        <td>
+          <button
+            class="btn btn-warning mb-3 lead"
+            (click)="updateTodo(todo.id)"
+          >
+            Update
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger mb-3 lead"
+            (click)="deleteTodo(todo.id)"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+  <div class="row">
+    <button class="btn btn-success mb-3 lead" (click)="addTodo()">
+      Add Todo
+    </button>
+  </div>
 </div>
