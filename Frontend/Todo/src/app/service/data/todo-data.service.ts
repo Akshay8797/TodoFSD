@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from 'src/app/list-todos/list-todos.component';
 
@@ -9,8 +9,12 @@ export class TodoDataService {
   constructor(private httpClient: HttpClient) {}
 
   retrieveAllTodos(name: string) {
+    let basicAuthHeader: string = this.createBasicAuthenticationHeader();
+    let header = new HttpHeaders({ Authorization: basicAuthHeader });
+
     return this.httpClient.get<Todo[]>(
-      `http://localhost:8080/users/${name}/todos`
+      `http://localhost:8080/users/${name}/todos`,
+      { headers: header }
     );
   }
 
@@ -38,5 +42,12 @@ export class TodoDataService {
       `http://localhost:8080/users/${username}/todos`,
       todo
     );
+  }
+
+  createBasicAuthenticationHeader(): string {
+    let userName: string = 'Akshay8797';
+    let password: string = '8797';
+    let headerString: string = 'Basic ' + window.btoa(userName + ':' + password);
+    return headerString;
   }
 }

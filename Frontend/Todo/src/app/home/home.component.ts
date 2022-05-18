@@ -35,11 +35,4 @@ export class HomeComponent implements OnInit {
   handleErrorResponse(error: any) {
     this.serviceMessage = error.error.message;
   }
-
-  getWelcomeMsgWithParam(): void {
-    this.welcomeDataService.executeHiServiceWithPath(this.name).subscribe({
-      next: (response) => this.handleHelloResponse(response),
-      error: (error) => this.handleErrorResponse(error),
-    });
-  }
 }

@@ -14,8 +14,4 @@ export class WelcomeDataService {
   executeHiService() {
     return this.httpClient.get<HelloWorld>('http://localhost:8080/hello');
   }
-
-  executeHiServiceWithPath(name: string) {
-    return this.httpClient.get<HelloWorld>(`http://localhost:8080/hi/${name}`);
-  }
 }
