@@ -6,23 +6,24 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BasicAuthenticationService } from '../basic-authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpBasicAuthInterceptorService implements HttpInterceptor {
-  constructor() {}
+  constructor(private basicAuthenticationService: BasicAuthenticationService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let userName: string = 'Akshay8797';
-    let password: string = '8797';
-    let headerString: string =
-      'Basic ' + window.btoa(userName + ':' + password);
-    req = req.clone({
-      setHeaders: { Authorization: headerString },
-    });
+    let headerString = this.basicAuthenticationService.getAuthenticatedToken();
+    let userName = this.basicAuthenticationService.getAuthenticatedUser();
+    if (headerString) {
+      req = req.clone({
+        setHeaders: { Authorization: headerString },
+      });
+    }
     return next.handle(req);
-  } 
+  }
 }

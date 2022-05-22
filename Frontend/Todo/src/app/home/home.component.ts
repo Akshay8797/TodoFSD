@@ -13,7 +13,6 @@ import {
 export class HomeComponent implements OnInit {
   message: string = 'Welcome';
   name: string = '';
-  serviceMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -22,17 +21,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.name = this.route.snapshot.params['name'];
-  }
-  getWelcomeMsg(): void {
-    this.welcomeDataService.executeHiService().subscribe({
-      next: (response) => this.handleHelloResponse(response),
-      error: (error) => this.handleErrorResponse(error),
-    });
-  }
-  handleHelloResponse(response: HelloWorld) {
-    this.serviceMessage = response.msg;
-  }
-  handleErrorResponse(error: any) {
-    this.serviceMessage = error.error.message;
   }
 }

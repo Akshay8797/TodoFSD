@@ -1,9 +1,9 @@
-package com.TodoManager.HelloWorld;
+package com.TodoManager.BasicAuth;
 
-public class Hi {
+public class Message {
 	private String msg;
 
-	public Hi(String msg) {
+	public Message(String msg) {
 		super();
 		this.msg = msg;
 	}
@@ -14,11 +14,6 @@ public class Hi {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
-	}
-
-	@Override
-	public String toString() {
-		return "Hi [msg=" + msg + "]";
 	}
 
 }
