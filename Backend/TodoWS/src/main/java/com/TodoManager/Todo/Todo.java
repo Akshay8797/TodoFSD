@@ -3,6 +3,9 @@ package com.TodoManager.Todo;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Todo {
 	private long id;
 	private String userName;

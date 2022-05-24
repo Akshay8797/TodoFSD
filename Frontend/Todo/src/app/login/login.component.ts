@@ -21,18 +21,14 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean = false;
 
   handleLogin(): void {
-    if (this.userName === 'Akshay8797' && this.password === '8797') {
-      this.basicAuthenticationService
-        .executeAuthService(this.userName, this.password)
-        .subscribe({
-          next: (response) => (
-            (this.invalidLogin = false),
-            this.router.navigate(['home', this.userName])
-          ),
-          error: (error) => (this.invalidLogin = true),
-        });
-    } else {
-      this.invalidLogin = true;
-    }
+    this.basicAuthenticationService
+      .executeJwtAuthService(this.userName, this.password)
+      .subscribe({
+        next: (response) => (
+          (this.invalidLogin = false),
+          this.router.navigate(['home', this.userName])
+        ),
+        error: (error) => (this.invalidLogin = true),
+      });
   }
 }

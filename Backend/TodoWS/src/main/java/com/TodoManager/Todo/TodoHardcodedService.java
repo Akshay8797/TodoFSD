@@ -24,9 +24,9 @@ public class TodoHardcodedService {
 	public List<Todo> findAll() {
 		return todos;
 	}
-	
+
 	public Todo save(Todo todo) {
-		if(todo.getId() == 0) {
+		if (todo.getId() == 0) {
 			todo.setId(++idCounter);
 			todos.add(todo);
 		} else {

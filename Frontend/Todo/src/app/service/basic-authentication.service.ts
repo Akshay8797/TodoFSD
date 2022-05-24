@@ -6,8 +6,8 @@ import { apiUrl } from './app.costants';
 export const AuthUser = 'authUser';
 export const AuthToken = 'authToken';
 
-export class Message {
-  constructor(public message: string) {}
+export class Token {
+  constructor(public token: string) {}
 }
 
 @Injectable({
@@ -16,24 +16,36 @@ export class Message {
 export class BasicAuthenticationService {
   constructor(private httpClient: HttpClient) {}
 
-  executeAuthService(userName: string, password: string) {
-    let basicAuthHeaderString =
-      'Basic ' + window.btoa(userName + ':' + password);
-
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString,
-    });
-
+  executeJwtAuthService(userName: string, password: string) {
     return this.httpClient
-      .get<Message>(`${apiUrl}/basicAuth`, { headers })
+      .post<Token>(`${apiUrl}/authenticate`, { username: userName, password })
       .pipe(
         map((data) => {
           sessionStorage.setItem(AuthUser, userName);
-          sessionStorage.setItem(AuthToken, basicAuthHeaderString);
+          sessionStorage.setItem(AuthToken, `Bearer ${data.token}`);
           return data;
         })
       );
   }
+
+  // executeAuthService(userName: string, password: string) {
+  //   let basicAuthHeaderString =
+  //     'Basic ' + window.btoa(userName + ':' + password);
+
+  //   let headers = new HttpHeaders({
+  //     Authorization: basicAuthHeaderString,
+  //   });
+
+  //   return this.httpClient
+  //     .get<Message>(`${apiUrl}/basicAuth`, { headers })
+  //     .pipe(
+  //       map((data) => {
+  //         sessionStorage.setItem(AuthUser, userName);
+  //         sessionStorage.setItem(AuthToken, basicAuthHeaderString);
+  //         return data;
+  //       })
+  //     );
+  // }
 
   getAuthenticatedUser() {
     return sessionStorage.getItem(AuthUser);
