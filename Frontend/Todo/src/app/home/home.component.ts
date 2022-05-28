@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  HelloWorld,
-  WelcomeDataService,
-} from '../service/data/welcome-data.service';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +10,7 @@ export class HomeComponent implements OnInit {
   message: string = 'Welcome';
   name: string = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private welcomeDataService: WelcomeDataService
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.name = this.route.snapshot.params['name'];

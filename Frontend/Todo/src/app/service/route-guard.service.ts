@@ -6,14 +6,14 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { BasicAuthenticationService } from './basic-authentication.service';
+import { AuthenticationService } from './Authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouteGuardService implements CanActivate {
   constructor(
-    private basicAuthenticationService: BasicAuthenticationService,
+    private authenticationService: AuthenticationService,
     private router: Router
   ) {}
 
@@ -21,7 +21,7 @@ export class RouteGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.basicAuthenticationService.isUserLoggedIn()) return true;
+    if (this.authenticationService.isUserLoggedIn()) return true;
     this.router.navigate(['login']);
     return false;
   }

@@ -6,19 +6,19 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BasicAuthenticationService } from '../basic-authentication.service';
+import { AuthenticationService } from '../Authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpBasicAuthInterceptorService implements HttpInterceptor {
-  constructor(private basicAuthenticationService: BasicAuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let headerString = this.basicAuthenticationService.getAuthenticatedToken();
-    let userName = this.basicAuthenticationService.getAuthenticatedUser();
+    let headerString = this.authenticationService.getAuthenticatedToken();
+    let username = this.authenticationService.getAuthenticatedUser();
     if (headerString) {
       req = req.clone({
         setHeaders: { Authorization: headerString },

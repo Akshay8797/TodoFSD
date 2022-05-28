@@ -13,39 +13,20 @@ export class Token {
 @Injectable({
   providedIn: 'root',
 })
-export class BasicAuthenticationService {
+export class AuthenticationService {
   constructor(private httpClient: HttpClient) {}
 
-  executeJwtAuthService(userName: string, password: string) {
+  executeJwtAuthService(username: string, password: string) {
     return this.httpClient
-      .post<Token>(`${apiUrl}/authenticate`, { username: userName, password })
+      .post<Token>(`${apiUrl}/authenticate`, { username, password })
       .pipe(
         map((data) => {
-          sessionStorage.setItem(AuthUser, userName);
+          sessionStorage.setItem(AuthUser, username);
           sessionStorage.setItem(AuthToken, `Bearer ${data.token}`);
           return data;
         })
       );
   }
-
-  // executeAuthService(userName: string, password: string) {
-  //   let basicAuthHeaderString =
-  //     'Basic ' + window.btoa(userName + ':' + password);
-
-  //   let headers = new HttpHeaders({
-  //     Authorization: basicAuthHeaderString,
-  //   });
-
-  //   return this.httpClient
-  //     .get<Message>(`${apiUrl}/basicAuth`, { headers })
-  //     .pipe(
-  //       map((data) => {
-  //         sessionStorage.setItem(AuthUser, userName);
-  //         sessionStorage.setItem(AuthToken, basicAuthHeaderString);
-  //         return data;
-  //       })
-  //     );
-  // }
 
   getAuthenticatedUser() {
     return sessionStorage.getItem(AuthUser);

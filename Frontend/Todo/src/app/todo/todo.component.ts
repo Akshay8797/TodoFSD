@@ -9,7 +9,7 @@ import { TodoDataService } from '../service/data/todo-data.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  id: number = 0;
+  id: number = -1;
   todo: Todo = new Todo(this.id, '', new Date(), false);
   saveFailed: string = '';
   formInvalid: string = 'Please enter valid values';
@@ -22,7 +22,7 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.actiavtedRoute.snapshot.params['id'];
-    if (this.id != 0) {
+    if (this.id > 0) {
       this.todoService.retrieveTodo('Akshay8797', this.id).subscribe({
         next: (response) => (this.todo = response),
         error: (error) => this.router.navigate(['error']),
@@ -31,8 +31,9 @@ export class TodoComponent implements OnInit {
   }
 
   handleSave(): void {
-    if (this.id == 0) {
-      this.todoService.updateTodo('Akshay8797', this.id, this.todo).subscribe({
+    console.log('Todo Id: ' + this.id);
+    if (this.id == -1) {
+      this.todoService.createTodo('Akshay8797', this.todo).subscribe({
         next: (response) => this.router.navigate(['todos']),
         error: (error) =>
           (this.saveFailed = 'Unable to save Todo, Please try later!'),
