@@ -1,27 +1,30 @@
-<div class="container">
-  <br />
+<div class="container d-flex justify-content-center mt-5">
   <form>
-    <div class="form-outline mb-4">
-      <label class="form-label lead" for="loginName">Username : &nbsp;</label>
-      <input
-        type="text"
-        class="form-group form-group-sm lead"
-        name="userame"
-        [(ngModel)]="username"
-      />
+    <div class="form-row">
+      <fieldset class="form-group">
+        <label class="form-label lead" for="loginName">Username : &nbsp;</label>
+        <input
+          type="text"
+          class="form-group lead"
+          name="userame"
+          [(ngModel)]="username"
+        />
+      </fieldset>
     </div>
-    <div class="form-outline mb-4">
-      <label class="form-label lead" for="loginPassword"
-        >Password : &nbsp;&nbsp;</label
-      >
-      <input
-        type="password"
-        class="form-group form-group-sm lead"
-        name="password"
-        [(ngModel)]="password"
-      />
+    <div class="form-row">
+      <fieldset class="form-group">
+        <label class="form-label lead" for="loginPassword"
+          >Password : &nbsp;&nbsp;</label
+        >
+        <input
+          type="password"
+          class="form-group lead"
+          name="password"
+          [(ngModel)]="password"
+        />
+      </fieldset>
     </div>
-    <div class="form-outline mb-4">
+    <div class="text-center">
       <button class="btn btn-primary mb-3 lead" (click)="handleLogin()">
         Login
       </button>

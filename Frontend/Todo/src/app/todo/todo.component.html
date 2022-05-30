@@ -3,45 +3,58 @@
   <div class="alert alert-warning lead" *ngIf="saveFailed">
     {{ saveFailed }}
   </div>
-  <div class="alert alert-warning lead" *ngIf="todoForm.dirty && todoForm.invalid">
+  <div
+    class="alert alert-warning lead"
+    *ngIf="todoForm.dirty && todoForm.invalid"
+  >
     {{ formInvalid }}
   </div>
   <br />
   <form (ngSubmit)="!todoForm.invalid && handleSave()" #todoForm="ngForm">
-    <fieldset class="form-group">
-      <label class="form-label lead" for="description">Description</label>
-      <input
-        type="text"
-        [(ngModel)]="todo.description"
-        class="form-control form-group lead"
-        name="description"
-        minlength="6"
-        required="required"
-      />
-    </fieldset>
-    <fieldset class="form-group">
-      <label class="form-label lead" for="date">Date</label>
-      <input
-        type="date"
-        [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
-        (ngModelChange)="todo.targetDate = $event"
-        class="form-control form-group lead"
-        name="targetDate"
-        required="required"
-      />
-    </fieldset>
-    <fieldset class="form-group">
-      <label class="form-label lead" for="isDone">Completed?</label>
-      <select
-        [(ngModel)]="todo.isDone"
-        class="form-control form-group lead"
-        name="isDone"
-        required="required"
-      >
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
-    </fieldset>
-    <button type="submit" class="btn btn-success mb-3 lead">Save</button>
+    <div class="form-row">
+      <div class="col-6">
+        <fieldset class="form-group">
+          <label class="form-label lead" for="description">Description</label>
+          <input
+            type="text"
+            [(ngModel)]="todo.description"
+            class="form-control form-group lead"
+            name="description"
+            minlength="6"
+            required="required"
+          />
+        </fieldset>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <fieldset class="form-group">
+          <label class="form-label lead" for="date">Date</label>
+          <input
+            type="date"
+            [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
+            (ngModelChange)="todo.targetDate = $event"
+            class="form-control form-group lead"
+            name="targetDate"
+            required="required"
+          />
+        </fieldset>
+      </div>
+      <div class="col-2 offset-1">
+        <fieldset class="form-group">
+          <label class="form-label lead" for="isDone">Completed?</label>
+          <select
+            [(ngModel)]="todo.isDone"
+            class="form-control form-group lead"
+            name="isDone"
+            required="required"
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </fieldset>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-sm btn-success lead">Save</button>
   </form>
 </div>
